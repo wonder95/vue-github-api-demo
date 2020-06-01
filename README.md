@@ -11,11 +11,8 @@ npm install
 npm run serve
 ```
 
-### Customize configuration
-Uses fetch API and MirageJS to create a mock API.
-
 ### Notes:
-* Select search type using radio buttons
+* Select search type and sort order using radio buttons.
 * Records are displayed at the bottom. Selecting records displays details above table.
 
 ### Structure
