@@ -19,10 +19,15 @@
             Search
           </v-btn>
         </v-form>
-        <v-radio-group v-model="searchType" row>
+        <v-radio-group v-model="searchType" label="Search Type:" row>
           <v-radio label="Users" value="users"></v-radio>
           <v-radio label="Repositories" value="repositories"></v-radio>
           <v-radio label="Issues" value="issues"></v-radio>
+        </v-radio-group>
+
+        <v-radio-group v-model="searchOrder" label="Order:" row>
+          <v-radio label="Ascending" value="asc"></v-radio>
+          <v-radio label="Descending" value="desc"></v-radio>
         </v-radio-group>
 
         <UserCard v-if="showUser"
@@ -67,6 +72,7 @@ export default {
     item: {},
     searchString: '',
     searchType: 'users',
+    searchOrder: 'desc',
     headers: {
       users: [
         {
@@ -112,7 +118,7 @@ export default {
     async search () {
       this.item = {}
       this.items = []
-      const ghItems = await searchService.getEntity(this.searchType, this.searchString)
+      const ghItems = await searchService.getEntity(this.searchType, this.searchString, this.searchOrder)
       if (ghItems.data.total_count > 0) {
         this.items = ghItems.data.items
         // Display the first item
